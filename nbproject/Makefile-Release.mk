@@ -35,14 +35,14 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/Image.o \
-	${OBJECTDIR}/Player.o \
-	${OBJECTDIR}/b2GLBase.o \
-	${OBJECTDIR}/b2GLCicle.o \
-	${OBJECTDIR}/b2GLDraw.o \
-	${OBJECTDIR}/b2GLMain.o \
-	${OBJECTDIR}/b2GLRectangle.o \
-	${OBJECTDIR}/main.o
+	${OBJECTDIR}/src/Image.o \
+	${OBJECTDIR}/src/Player.o \
+	${OBJECTDIR}/src/b2GLBase.o \
+	${OBJECTDIR}/src/b2GLCicle.o \
+	${OBJECTDIR}/src/b2GLDraw.o \
+	${OBJECTDIR}/src/b2GLMain.o \
+	${OBJECTDIR}/src/b2GLRectangle.o \
+	${OBJECTDIR}/src/main.o
 
 
 # C Compiler Flags
@@ -69,45 +69,45 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/b2gl: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/b2gl ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/Image.o: Image.cpp 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/Image.o: src/Image.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Image.o Image.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/Image.o src/Image.cpp
 
-${OBJECTDIR}/Player.o: Player.cpp 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/Player.o: src/Player.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Player.o Player.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/Player.o src/Player.cpp
 
-${OBJECTDIR}/b2GLBase.o: b2GLBase.cpp 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/b2GLBase.o: src/b2GLBase.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/b2GLBase.o b2GLBase.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/b2GLBase.o src/b2GLBase.cpp
 
-${OBJECTDIR}/b2GLCicle.o: b2GLCicle.cpp 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/b2GLCicle.o: src/b2GLCicle.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/b2GLCicle.o b2GLCicle.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/b2GLCicle.o src/b2GLCicle.cpp
 
-${OBJECTDIR}/b2GLDraw.o: b2GLDraw.cpp 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/b2GLDraw.o: src/b2GLDraw.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/b2GLDraw.o b2GLDraw.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/b2GLDraw.o src/b2GLDraw.cpp
 
-${OBJECTDIR}/b2GLMain.o: b2GLMain.cpp 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/b2GLMain.o: src/b2GLMain.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/b2GLMain.o b2GLMain.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/b2GLMain.o src/b2GLMain.cpp
 
-${OBJECTDIR}/b2GLRectangle.o: b2GLRectangle.cpp 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/b2GLRectangle.o: src/b2GLRectangle.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/b2GLRectangle.o b2GLRectangle.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/b2GLRectangle.o src/b2GLRectangle.cpp
 
-${OBJECTDIR}/main.o: main.cpp 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/main.o: src/main.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/main.o src/main.cpp
 
 # Subprojects
 .build-subprojects:
