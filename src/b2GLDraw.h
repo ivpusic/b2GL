@@ -4,7 +4,6 @@
 #include <GL/gl.h>
 #include <GL/glext.h>
 #include <Box2D/Box2D.h>
-#include "b2GLDraw.h"
 
 struct b2AABB;
 

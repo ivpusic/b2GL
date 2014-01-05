@@ -58,8 +58,11 @@ b2GLRectangle *b2GLMain::drawI() {
 }
 
 b2GLMain::b2GLMain(b2World *world) {
+    
+    XMIN = 0;
+    YMIN = 0;
+    
     this->world = world;
-
     timeStep = 1.0f / 60.f;
     velocityIterations = 10;
     positionIterations = 10;

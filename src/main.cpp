@@ -51,15 +51,15 @@ int main(int argc, char** argv) {
     world = new b2World(gravity);
 
     // setup debugDraw
-    b2GLDraw fooDrawInstance;
-    world->SetDebugDraw(&fooDrawInstance);
+    b2GLDraw debug;
+    world->SetDebugDraw(&debug);
     uint32 flags = 0;
     flags += b2Draw::e_shapeBit;
     flags += b2Draw::e_jointBit;
     //flags += b2Draw::e_aabbBit;
     //flags += b2Draw::e_pairBit;
     flags += b2Draw::e_centerOfMassBit;
-    fooDrawInstance.SetFlags(flags);
+    debug.SetFlags(flags);
 
     box2dGLMain = new b2GLMain(world);
 

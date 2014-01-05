@@ -16,9 +16,9 @@
 
 class b2GLMain {
 public:
-    double XMIN = 0;
+    double XMIN;
     double XMAX;
-    double YMIN = 0;
+    double YMIN;
     double YMAX;
 
     b2World *world;
