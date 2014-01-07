@@ -13,16 +13,13 @@
 class b2GLBase {
 protected:
     b2Body *body;
-    b2BodyDef body_def;
+    b2BodyDef bodyDef;
     b2Fixture *fixture;
-    b2FixtureDef fixture_def;
-    b2MouseJoint *mouse_joint;
+    b2FixtureDef fixtureDef;
 
 public:
-    b2Body *get_body();
-    b2Fixture *get_fixture();
-    b2MouseJoint *get_mouse_joint();
-    void set_mouse_joint(b2MouseJoint *joint);
+    b2Body *getBody();
+    b2Fixture *getFixture();
 };
 
 #endif	/* B2GLBASE_H */

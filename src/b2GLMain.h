@@ -13,6 +13,7 @@
 #include "b2GLRectangle.h"
 #include "b2GLCicle.h"
 #include "Player.h"
+#include "b2GLMouseClickCallback.h"
 
 class b2GLMain {
 public:
@@ -37,7 +38,7 @@ public:
     void on_mouse_move(int x, int y);
     void on_key_down(unsigned char c, int x, int y);
     void display();
-    b2Vec2 gl_to_box2d_vec2(double x, double y);
+    b2Vec2 gl_to_box2d_vec2(b2Vec2 pos);
     virtual ~b2GLMain();
 
 private:
@@ -53,6 +54,8 @@ private:
     b2GLRectangle *rect3;
     b2GLRectangle *rect4;
     b2GLRectangle *rect5;
+    
+    b2MouseJoint *mouseJoint;
 };
 
 #endif	/* B2GLMAIN_H */

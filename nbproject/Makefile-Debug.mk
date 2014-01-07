@@ -41,6 +41,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/src/b2GLCicle.o \
 	${OBJECTDIR}/src/b2GLDraw.o \
 	${OBJECTDIR}/src/b2GLMain.o \
+	${OBJECTDIR}/src/b2GLMouseClickCallback.o \
 	${OBJECTDIR}/src/b2GLRectangle.o \
 	${OBJECTDIR}/src/main.o
 
@@ -98,6 +99,11 @@ ${OBJECTDIR}/src/b2GLMain.o: src/b2GLMain.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/home/ivpusic/libs/Box2D_v2.3.0/Box2D -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/b2GLMain.o src/b2GLMain.cpp
+
+${OBJECTDIR}/src/b2GLMouseClickCallback.o: src/b2GLMouseClickCallback.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/home/ivpusic/libs/Box2D_v2.3.0/Box2D -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/b2GLMouseClickCallback.o src/b2GLMouseClickCallback.cpp
 
 ${OBJECTDIR}/src/b2GLRectangle.o: src/b2GLRectangle.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src

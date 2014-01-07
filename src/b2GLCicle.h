@@ -11,7 +11,7 @@
 #include "b2GLBase.h"
 #include "b2GLTypes.h"
 
-class b2GLCicle : b2GLBase {
+class b2GLCicle : public b2GLBase {
 public:
     b2GLCicle(double radius, b2Vec2 position, b2World *world, fixture_properties properties);
     virtual ~b2GLCicle();

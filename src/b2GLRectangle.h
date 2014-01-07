@@ -13,10 +13,9 @@
 #ifndef B2GLRECTANGLE_H
 #define	B2GLRECTANGLE_H
 
-class b2GLRectangle : b2GLBase {
+class b2GLRectangle : public b2GLBase {
 public:
     b2GLRectangle(double width, double height, b2Vec2 position, b2World *world, fixture_properties properties);
-    b2Body* getBody();
 };
 
 #endif	/* B2GLRECTANGLE_H */

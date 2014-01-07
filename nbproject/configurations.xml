@@ -7,8 +7,9 @@
       <logicalFolder name="f1" displayName="b2GL" projectFiles="true">
         <itemPath>src/b2GLBase.h</itemPath>
         <itemPath>src/b2GLCicle.h</itemPath>
-        <itemPath>b2GLDraw.h</itemPath>
+        <itemPath>src/b2GLDraw.h</itemPath>
         <itemPath>src/b2GLMain.h</itemPath>
+        <itemPath>src/b2GLMouseClickCallback.h</itemPath>
         <itemPath>src/b2GLRectangle.h</itemPath>
         <itemPath>src/b2GLTypes.h</itemPath>
       </logicalFolder>
@@ -27,6 +28,7 @@
         <itemPath>src/b2GLCicle.cpp</itemPath>
         <itemPath>src/b2GLDraw.cpp</itemPath>
         <itemPath>src/b2GLMain.cpp</itemPath>
+        <itemPath>src/b2GLMouseClickCallback.cpp</itemPath>
         <itemPath>src/b2GLRectangle.cpp</itemPath>
       </logicalFolder>
       <itemPath>src/Image.cpp</itemPath>
@@ -66,8 +68,6 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="b2GLDraw.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="src/Image.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/Image.h" ex="false" tool="3" flavor2="0">
@@ -86,9 +86,15 @@
       </item>
       <item path="src/b2GLDraw.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="src/b2GLDraw.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/b2GLMain.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/b2GLMain.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/b2GLMouseClickCallback.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/b2GLMouseClickCallback.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/b2GLRectangle.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -119,8 +125,6 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="b2GLDraw.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="src/Image.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/Image.h" ex="false" tool="3" flavor2="0">
@@ -139,9 +143,15 @@
       </item>
       <item path="src/b2GLDraw.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="src/b2GLDraw.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/b2GLMain.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/b2GLMain.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/b2GLMouseClickCallback.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/b2GLMouseClickCallback.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/b2GLRectangle.cpp" ex="false" tool="1" flavor2="0">
       </item>

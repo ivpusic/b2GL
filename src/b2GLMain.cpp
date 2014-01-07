@@ -8,14 +8,27 @@
 #include <stdio.h>
 
 #include "b2GLMain.h"
-#define PTM_RATIO 32
+#define PTM_RATIO 10
+
+b2GLMain::b2GLMain(b2World *world) {
+
+    XMIN = 0;
+    YMIN = 0;
+
+    mouseJoint = NULL;
+
+    this->world = world;
+    timeStep = 1.0f / 60.f;
+    velocityIterations = 10;
+    positionIterations = 10;
+    leftMouseClick = false;
+}
 
 b2GLRectangle *b2GLMain::drawF() {
 
     b2WeldJointDef wjd;
     fixture_properties properties;
     properties.density = 5.0;
-
     rect = new b2GLRectangle(1, 1, b2Vec2(10, 10), world, properties);
     rect1 = new b2GLRectangle(1, 1, b2Vec2(10, 12), world, properties);
     wjd.Initialize(rect->getBody(), rect1->getBody(), b2Vec2(10, 10));
@@ -55,18 +68,6 @@ b2GLRectangle *b2GLMain::drawI() {
     b2GLRectangle *i = new b2GLRectangle(1, 4, b2Vec2(22, 1), world, properties);
 
     return i;
-}
-
-b2GLMain::b2GLMain(b2World *world) {
-    
-    XMIN = 0;
-    YMIN = 0;
-    
-    this->world = world;
-    timeStep = 1.0f / 60.f;
-    velocityIterations = 10;
-    positionIterations = 10;
-    leftMouseClick = false;
 }
 
 void b2GLMain::drawBounds() {
@@ -121,14 +122,29 @@ void b2GLMain::scale(int w, int h) {
     gluOrtho2D(XMIN, XMAX, YMIN, YMAX);
 
     player = new Player(2, 2, b2Vec2(128 / PTM_RATIO, 128 / PTM_RATIO), world);
-    drawF();
-    drawO();
-    drawI();
+    b2Body *f = drawF()->getBody();
+    b2Body *o = drawO()->getBody();
+    b2Body *i = drawI()->getBody();
+
+    double jointDistance = 15;
+
+    b2RopeJointDef djd;
+    djd.bodyA = f;
+    djd.bodyB = o;
+    djd.collideConnected = true;
+    djd.maxLength = jointDistance;
+    world->CreateJoint(&djd);
+
+    djd.bodyA = o;
+    djd.bodyB = i;
+    djd.maxLength = jointDistance;
+    world->CreateJoint(&djd);
+
     drawBounds();
 }
 
-b2Vec2 b2GLMain::gl_to_box2d_vec2(double x, double y) {
-    return b2Vec2(x, YMAX - y);
+b2Vec2 b2GLMain::gl_to_box2d_vec2(b2Vec2 pos) {
+    return b2Vec2(pos.x, YMAX - pos.y);
 }
 
 void b2GLMain::on_mouse_button(int button, int state, int x, int y) {
@@ -136,25 +152,34 @@ void b2GLMain::on_mouse_button(int button, int state, int x, int y) {
 
     switch (button) {
         case GLUT_LEFT_BUTTON:
-            if (state == GLUT_UP && player->get_mouse_joint() != NULL) {
-                world->DestroyJoint(player->get_mouse_joint());
-                player->set_mouse_joint(NULL);
+            // mouse down
+            if (state == GLUT_UP && mouseJoint != NULL) {
+                world->DestroyJoint(mouseJoint);
+                mouseJoint = NULL;
                 leftMouseClick = false;
             }
 
             if (state == GLUT_DOWN) {
-                if (player->get_mouse_joint() != NULL) return;
-                if (player->get_fixture()->TestPoint(gl_to_box2d_vec2(x / PTM_RATIO, y / PTM_RATIO))) {
-                    md.bodyA = groundBody;
-                    md.bodyB = player->get_body();
-                    md.target = player->get_body()->GetPosition();
-                    md.collideConnected = true;
-                    md.maxForce = 1000.0f * player->get_body()->GetMass();
+                // mouse up
+                b2GLMouseClickCallback queryCallback;
+                b2AABB aabb;
+                aabb.lowerBound = gl_to_box2d_vec2(b2Vec2((x + 0.001) / PTM_RATIO, (y + 0.001) / PTM_RATIO));
+                aabb.upperBound = gl_to_box2d_vec2(b2Vec2((x - 0.001) / PTM_RATIO, (y - 0.001) / PTM_RATIO));
+                world->QueryAABB(&queryCallback, aabb);
 
-                    player->set_mouse_joint((b2MouseJoint*) world->CreateJoint(&md));
-                    player->get_body()->SetAwake(true);
-                    player->get_mouse_joint()->SetTarget(b2Vec2(x / PTM_RATIO, (glutGet(GLUT_WINDOW_HEIGHT) - y) / PTM_RATIO));
-                    leftMouseClick = true;
+                b2Fixture *fixture = queryCallback.getFoundFixture();
+                if (fixture != NULL) {
+                    if (mouseJoint != NULL) return;
+                        md.bodyA = groundBody;
+                        md.bodyB = fixture->GetBody();
+                        md.target = fixture->GetBody()->GetPosition();
+                        md.collideConnected = true;
+                        md.maxForce = 1000.0f * fixture->GetBody()->GetMass();
+
+                        mouseJoint = (b2MouseJoint*) world->CreateJoint(&md);
+                        queryCallback.getFoundFixture()->GetBody()->SetAwake(true);
+                        mouseJoint->SetTarget(b2Vec2(x / PTM_RATIO, (glutGet(GLUT_WINDOW_HEIGHT) - y) / PTM_RATIO));
+                        leftMouseClick = true;
                 }
             }
             break;
@@ -172,8 +197,8 @@ void b2GLMain::on_key_down(unsigned char c, int x, int y) {
 
 void b2GLMain::on_mouse_move(int x, int y) {
     if (leftMouseClick) {
-        if (player->get_mouse_joint() == NULL) return;
-        player->get_mouse_joint()->SetTarget(b2Vec2(x / PTM_RATIO, (glutGet(GLUT_WINDOW_HEIGHT) - y) / PTM_RATIO));
+        if (mouseJoint == NULL) return;
+        mouseJoint->SetTarget(b2Vec2(x / PTM_RATIO, (glutGet(GLUT_WINDOW_HEIGHT) - y) / PTM_RATIO));
     }
 }
 

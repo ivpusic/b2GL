@@ -6,6 +6,22 @@
     </data>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/ivpusic/NetBeansProjects/b2GL/src/b2GLMain.cpp</file>
+            <file>file:/home/ivpusic/NetBeansProjects/b2GL/src/b2GLDraw.cpp</file>
+            <file>file:/home/ivpusic/NetBeansProjects/b2GL/src/b2GLMain.h</file>
+            <file>file:/home/ivpusic/NetBeansProjects/b2GL/src/b2GLDraw.h</file>
+            <file>file:/home/ivpusic/NetBeansProjects/b2GL/src/b2GLMouseClickCallback.cpp</file>
+            <file>file:/home/ivpusic/NetBeansProjects/b2GL/src/Player.h</file>
+            <file>file:/home/ivpusic/NetBeansProjects/b2GL/src/Player.cpp</file>
+            <file>file:/home/ivpusic/NetBeansProjects/b2GL/src/b2GLBase.h</file>
+            <file>file:/home/ivpusic/NetBeansProjects/b2GL/src/b2GLCicle.h</file>
+            <file>file:/home/ivpusic/NetBeansProjects/b2GL/src/b2GLMouseClickCallback.h</file>
+            <file>file:/home/ivpusic/NetBeansProjects/b2GL/src/b2GLCicle.cpp</file>
+            <file>file:/home/ivpusic/NetBeansProjects/b2GL/src/b2GLRectangle.h</file>
+            <file>file:/home/ivpusic/NetBeansProjects/b2GL/src/b2GLBase.cpp</file>
+            <file>file:/home/ivpusic/NetBeansProjects/b2GL/src/b2GLRectangle.cpp</file>
+            <file>file:/home/ivpusic/NetBeansProjects/b2GL/src/main.cpp</file>
+        </group>
     </open-files>
 </project-private>

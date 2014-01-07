@@ -42,7 +42,7 @@ int main(int argc, char** argv) {
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 
     glutInitWindowPosition(60, 30);
-    glutInitWindowSize(1024, 768);
+    glutInitWindowSize(800, 800);
     glutCreateWindow("box2d");
 
     glClearColor(0.0, 0.0, 0.0, 0.0);
