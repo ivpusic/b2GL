@@ -17,11 +17,13 @@
         <itemPath>src/b2GL/b2GLRectangle.h</itemPath>
         <itemPath>src/b2GL/b2GLTypes.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="f2" displayName="GL" projectFiles="true">
-        <itemPath>src/GL/GLF.h</itemPath>
-        <itemPath>src/GL/GLI.h</itemPath>
-        <itemPath>src/GL/GLRect.h</itemPath>
-        <itemPath>src/GL/GLSprite.h</itemPath>
+      <logicalFolder name="f2" displayName="coreGL" projectFiles="true">
+        <itemPath>src/coreGL/GLRect.h</itemPath>
+        <itemPath>src/coreGL/GLSprite.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f4" displayName="userGL" projectFiles="true">
+        <itemPath>src/userGL/GLF.h</itemPath>
+        <itemPath>src/userGL/GLI.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -43,11 +45,13 @@
         <itemPath>src/b2GL/b2GLMouseClickCallback.cpp</itemPath>
         <itemPath>src/b2GL/b2GLRectangle.cpp</itemPath>
       </logicalFolder>
-      <logicalFolder name="f2" displayName="GL" projectFiles="true">
-        <itemPath>src/GL/GLF.cpp</itemPath>
-        <itemPath>src/GL/GLI.cpp</itemPath>
-        <itemPath>src/GL/GLRect.cpp</itemPath>
-        <itemPath>src/GL/GLSprite.cpp</itemPath>
+      <logicalFolder name="f2" displayName="coreGL" projectFiles="true">
+        <itemPath>src/coreGL/GLRect.cpp</itemPath>
+        <itemPath>src/coreGL/GLSprite.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f4" displayName="userGL" projectFiles="true">
+        <itemPath>src/userGL/GLF.cpp</itemPath>
+        <itemPath>src/userGL/GLI.cpp</itemPath>
       </logicalFolder>
       <itemPath>src/main.cpp</itemPath>
     </logicalFolder>
@@ -84,22 +88,6 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="src/GL/GLF.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/GL/GLF.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/GL/GLI.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/GL/GLI.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/GL/GLRect.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/GL/GLRect.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/GL/GLSprite.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/GL/GLSprite.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="src/aux/Image.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/aux/Image.h" ex="false" tool="3" flavor2="0">
@@ -137,7 +125,23 @@
       </item>
       <item path="src/b2GL/b2GLTypes.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="src/coreGL/GLRect.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/coreGL/GLRect.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/coreGL/GLSprite.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/coreGL/GLSprite.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/userGL/GLF.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/userGL/GLF.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/userGL/GLI.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/userGL/GLI.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -160,22 +164,6 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="src/GL/GLF.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/GL/GLF.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/GL/GLI.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/GL/GLI.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/GL/GLRect.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/GL/GLRect.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/GL/GLSprite.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/GL/GLSprite.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="src/aux/Image.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/aux/Image.h" ex="false" tool="3" flavor2="0">
@@ -213,7 +201,23 @@
       </item>
       <item path="src/b2GL/b2GLTypes.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="src/coreGL/GLRect.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/coreGL/GLRect.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/coreGL/GLSprite.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/coreGL/GLSprite.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/userGL/GLF.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/userGL/GLF.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/userGL/GLI.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/userGL/GLI.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

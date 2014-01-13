@@ -5,12 +5,6 @@
  * Created on January 5, 2014, 12:18 AM
  */
 
-#define DRAW_GL 1
-#define DRAW_BOX2D 1
-#define PTM_RATIO 10
-#define RADIANS_TO_DEGREES(__ANGLE__) ((__ANGLE__) / M_PI * 180.0) 
-
-
 #include <stdio.h>
 #include "b2GLMain.h"
 

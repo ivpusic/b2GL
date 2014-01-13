@@ -9,7 +9,7 @@
 #define	GLF_H
 
 #include <GL/freeglut.h>
-#include "GLRect.h"
+#include "../coreGL/GLRect.h"
 
 class GLF : public GLSprite {
 public:

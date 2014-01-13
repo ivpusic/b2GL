@@ -8,18 +8,23 @@
 #ifndef B2GLMAIN_H
 #define	B2GLMAIN_H
 
-//#include "../glBodies/GLRect.h"
+#define DRAW_GL 1
+#define DRAW_BOX2D 1
+#define PTM_RATIO 10
+#define RADIANS_TO_DEGREES(__ANGLE__) ((__ANGLE__) / M_PI * 180.0) 
+
+#include <list>
 #include <GL/freeglut.h>
 #include <Box2D/Box2D.h>
 #include "b2GLRectangle.h"
 #include "b2GLCicle.h"
-#include "../aux/Player.h"
 #include "b2GLMouseClickCallback.h"
-#include "../GL/GLRect.h"
-#include "../GL/GLSprite.h"
-#include "../GL/GLF.h"
-#include "../GL/GLI.h"
-#include <list>
+
+#include "../aux/Player.h"
+#include "../coreGL/GLSprite.h"
+#include "../userGL/GLF.h"
+#include "../userGL/GLI.h"
+#include "../coreGL/GLRect.h"
 
 class b2GLMain {
 public:

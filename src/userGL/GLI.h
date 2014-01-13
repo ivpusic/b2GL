@@ -8,15 +8,13 @@
 #ifndef GLI_H
 #define	GLI_H
 
-#include "GLSprite.h"
-#include "GLRect.h"
+#include "../coreGL/GLSprite.h"
+#include "../coreGL/GLRect.h"
 
 class GLI : public GLSprite {
 public:
     GLI();
     void draw();
-private:
-
 };
 
 #endif	/* GLI_H */
