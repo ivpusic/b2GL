@@ -15,9 +15,6 @@ class GLF : public GLSprite {
 public:
     GLF();
     void draw();
-
-private:
-
 };
 
 #endif	/* GLF_H */

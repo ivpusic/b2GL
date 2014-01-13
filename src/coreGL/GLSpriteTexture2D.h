@@ -12,6 +12,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
+#include <SOIL/SOIL.h>
+#include <iostream>
+#include "../b2GL/globals.h"
+#include "GLSprite.h"
 
 using namespace std;
 
@@ -20,16 +25,14 @@ typedef struct {
     GLubyte* pixmap;
 } picture;
 
-class Image {
+class GLSpriteTexture2D : public GLSprite {
 public:
-    Image();
-    Image(char* a);
-    virtual ~Image();
+    GLSpriteTexture2D();
+    GLSpriteTexture2D(char* a);
 
-    void drawImage();
-private:
-    picture pic;
+    void draw();
+    void translate();
+    GLint texture;
 };
 
 #endif
-

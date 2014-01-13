@@ -8,23 +8,20 @@
 #ifndef B2GLMAIN_H
 #define	B2GLMAIN_H
 
-#define DRAW_GL 1
-#define DRAW_BOX2D 1
-#define PTM_RATIO 10
-#define RADIANS_TO_DEGREES(__ANGLE__) ((__ANGLE__) / M_PI * 180.0) 
-
 #include <list>
 #include <GL/freeglut.h>
 #include <Box2D/Box2D.h>
 #include "b2GLRectangle.h"
 #include "b2GLCicle.h"
 #include "b2GLMouseClickCallback.h"
+#include "../coreGL/GLSpriteTexture2D.h"
 
-#include "../aux/Player.h"
+#include "../coreGL/GLRect.h"
 #include "../coreGL/GLSprite.h"
 #include "../userGL/GLF.h"
 #include "../userGL/GLI.h"
-#include "../coreGL/GLRect.h"
+#include "../userGL/GLO.h"
+#include "../b2GL/globals.h"
 
 class b2GLMain {
 public:
@@ -39,11 +36,9 @@ public:
     int32 positionIterations;
     bool leftMouseClick;
 
-    b2GLMain *box2dGLMain;
     b2Body *groundBody;
-    Player *player;
 
-    b2GLMain(b2World *world);
+    b2GLMain(b2World *world, int WIN_ID);
     void scale(int w, int h);
     void on_mouse_button(int button, int state, int x, int y);
     void on_mouse_move(int x, int y);
@@ -54,14 +49,20 @@ public:
     virtual ~b2GLMain();
 
 private:
-    std::list<GLSprite*> sprites;
-    std::list<GLSprite*>::iterator spriteIterator;
+    // methods
     b2GLRectangle *drawF();
     b2GLCicle *drawO();
     b2GLRectangle *drawI();
+    void drawStands();
     void drawBox(double x, double y, int width, int height);
     void drawBounds();
     void onScaled();
+
+    // members
+    int WIN_ID;
+
+    std::list<GLSprite*> sprites;
+    std::list<GLSprite*>::iterator spriteIterator;
 
     b2GLRectangle *rect;
     b2GLRectangle *rect1;
@@ -74,9 +75,18 @@ private:
     GLSprite *sprite;
     GLF *glF;
     GLI *glI;
+    GLO *glO;
 
+    GLSpriteTexture2D *background;
     b2MouseJoint *mouseJoint;
+
+    b2GLRectangle *fStand;
+    b2GLRectangle *oStand;
+    b2GLRectangle *iStand;
+
+    GLSpriteTexture2D *fStandSprite;
+    GLSpriteTexture2D *oStandSprite;
+    GLSpriteTexture2D *iStandSprite;
 };
 
 #endif	/* B2GLMAIN_H */
-

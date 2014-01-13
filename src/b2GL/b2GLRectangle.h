@@ -19,4 +19,3 @@ public:
 };
 
 #endif	/* B2GLRECTANGLE_H */
-

@@ -8,6 +8,7 @@
 #include "GLI.h"
 
 GLI::GLI() {
+    init();
     setWidth(1);
     setHeight(4);
 }

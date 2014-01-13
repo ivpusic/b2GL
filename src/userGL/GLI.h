@@ -18,4 +18,3 @@ public:
 };
 
 #endif	/* GLI_H */
-

@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "b2GLMain.h"
 
-b2GLMain::b2GLMain(b2World *world) {
+b2GLMain::b2GLMain(b2World *world, int WIN_ID) {
 
     XMIN = 0;
     YMIN = 0;
@@ -20,6 +20,7 @@ b2GLMain::b2GLMain(b2World *world) {
     velocityIterations = 10;
     positionIterations = 10;
     leftMouseClick = false;
+    this->WIN_ID = WIN_ID;
 }
 
 b2GLRectangle *b2GLMain::drawF() {
@@ -27,6 +28,8 @@ b2GLRectangle *b2GLMain::drawF() {
     b2WeldJointDef wjd;
     fixture_properties properties;
     properties.density = 5.0;
+    properties.bodyType = b2_dynamicBody;
+
     rect = new b2GLRectangle(1, 1, b2Vec2(10, 10), world, properties);
     rect1 = new b2GLRectangle(1, 1, b2Vec2(10, 12), world, properties);
     wjd.Initialize(rect->getBody(), rect1->getBody(), b2Vec2(10, 10));
@@ -55,6 +58,8 @@ b2GLRectangle *b2GLMain::drawF() {
 b2GLCicle *b2GLMain::drawO() {
     fixture_properties properties;
     properties.density = 1.0;
+    properties.bodyType = b2_dynamicBody;
+
     b2GLCicle *cicle = new b2GLCicle(3, b2Vec2(18, 0), world, properties);
 
     return cicle;
@@ -63,9 +68,38 @@ b2GLCicle *b2GLMain::drawO() {
 b2GLRectangle *b2GLMain::drawI() {
     fixture_properties properties;
     properties.density = 1.0;
+    properties.bodyType = b2_dynamicBody;
+
     b2GLRectangle *i = new b2GLRectangle(1, 4, b2Vec2(22, 1), world, properties);
 
     return i;
+}
+
+void b2GLMain::drawStands() {
+    fixture_properties properties;
+    properties.density = 1.0;
+    properties.bodyType = b2_staticBody;
+
+    fStand = new b2GLRectangle(5, 0.5, b2Vec2(20, 40), world, properties);
+    fStandSprite = new GLSpriteTexture2D((char*) "src/assets/stand.png");
+    fStandSprite->posx = 20;
+    fStandSprite->posy = 40;
+    sprites.push_back(fStandSprite);
+    fStand->getBody()->SetUserData((void*) fStandSprite);
+
+    oStand = new b2GLRectangle(6, 0.5, b2Vec2(35, 30), world, properties);
+    oStandSprite = new GLSpriteTexture2D((char*) "src/assets/stand.png");
+    oStandSprite->posx = 35;
+    oStandSprite->posy = 30;
+    sprites.push_back(oStandSprite);
+    oStand->getBody()->SetUserData((void*) oStandSprite);
+
+    iStand = new b2GLRectangle(6, 0.5, b2Vec2(50, 20), world, properties);
+    iStandSprite = new GLSpriteTexture2D((char*) "src/assets/stand.png");
+    iStandSprite->posx = 50;
+    iStandSprite->posy = 20;
+    sprites.push_back(iStandSprite);
+    iStand->getBody()->SetUserData((void*) iStandSprite);
 }
 
 void b2GLMain::drawBounds() {
@@ -101,19 +135,15 @@ void b2GLMain::display() {
 
     for (b2Body *b = world->GetBodyList(); b; b = b->GetNext()) {
         if (b->GetUserData() != NULL) {
-            sprite = (GLSprite*) b->GetUserData();
-            sprite->posx = b->GetPosition().x;
-            sprite->posy = b->GetPosition().y;
-            float angle = RADIANS_TO_DEGREES(b->GetAngle());
-            while (angle <= 0) {
-                angle += 360;
+            if (b->GetType() == b2_dynamicBody) {
+                sprite = (GLSprite*) b->GetUserData();
+                sprite->posx = b->GetPosition().x;
+                sprite->posy = b->GetPosition().y;
+                float angle = RADIANS_TO_DEGREES(b->GetAngle());
+                sprite->angle = angle;
+                sprite->angleRadians = b->GetAngle();
             }
-            while (angle > 360) {
-                angle -= 360;
-            }
-            sprite->angle = angle;
         }
-        b2Vec2 curPos = b->GetPosition();
     }
 
     if (DRAW_BOX2D) {
@@ -122,31 +152,35 @@ void b2GLMain::display() {
 
     // draw sprites
     if (DRAW_GL) {
-    for (spriteIterator = sprites.begin(); spriteIterator != sprites.end(); ++spriteIterator) {
-        (*spriteIterator)->translate();
-        (*spriteIterator)->draw();
-    }
+        for (spriteIterator = sprites.begin(); spriteIterator != sprites.end(); ++spriteIterator) {
+            (*spriteIterator)->translate();
+            (*spriteIterator)->draw();
+        }
     }
 
     glutSwapBuffers();
 }
 
 void b2GLMain::init() {
+    background = new GLSpriteTexture2D((char*) "src/assets/wood.png");
     rectGL = new GLRect(1, 1);
     glF = new GLF();
+    glO = new GLO(3);
     glI = new GLI();
 
+    sprites.push_back(background);
     sprites.push_back(glF);
     sprites.push_back(glI);
+    sprites.push_back(glO);
 }
 
 void b2GLMain::onScaled() {
-    player = new Player(2, 2, b2Vec2(128 / PTM_RATIO, 128 / PTM_RATIO), world);
     b2Body *f = drawF()->getBody();
     b2Body *o = drawO()->getBody();
     b2Body *i = drawI()->getBody();
 
     f->SetUserData((void*) glF);
+    o->SetUserData((void*) glO);
     i->SetUserData((void*) glI);
 
     double jointDistance = 15;
@@ -163,6 +197,7 @@ void b2GLMain::onScaled() {
     djd.maxLength = jointDistance;
     world->CreateJoint(&djd);
 
+    drawStands();
     drawBounds();
 }
 
@@ -228,7 +263,15 @@ void b2GLMain::on_mouse_button(int button, int state, int x, int y) {
 }
 
 void b2GLMain::on_key_down(unsigned char c, int x, int y) {
-    if (c == 'q') exit(0);
+    if (c == 'q') {
+        glutDestroyWindow(WIN_ID);
+        this->~b2GLMain();
+        exit(0);
+    }
+    if (c == 'g') DRAW_GL = 0;
+    if (c == 'G') DRAW_GL = 1;
+    if (c == 'b') DRAW_BOX2D = 0;
+    if (c == 'B') DRAW_BOX2D = 1;
 }
 
 void b2GLMain::on_mouse_move(int x, int y) {
@@ -245,4 +288,23 @@ b2GLMain::~b2GLMain() {
     free(rect3);
     free(rect4);
     free(rect5);
+
+    free(glF);
+    free(glO);
+    free(glI);
+
+    free(fStand);
+    free(oStand);
+    free(iStand);
+
+    free(fStandSprite);
+    free(oStandSprite);
+    free(iStandSprite);
+
+    free(background);
+    for (b2Body *b = world->GetBodyList(); b; b = b->GetNext()) {
+        world->DestroyBody(b);
+    }
+    free(world);
+    printf("Dealloc finished! \n");
 }

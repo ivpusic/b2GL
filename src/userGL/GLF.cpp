@@ -8,6 +8,7 @@
 #include "GLF.h"
 
 GLF::GLF() {
+    init();
     setWidth(1);
     setHeight(1);
 }

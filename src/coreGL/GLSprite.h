@@ -16,6 +16,7 @@ public:
     virtual void draw() = 0;
 
     // regular methods
+    void init();
     void translate();
     void setWidth(double w);
     void setHeight(double h);
@@ -26,10 +27,14 @@ public:
     double posx;
     double posy;
     double angle;
+    double angleRadians;
 
 private:
     double width;
     double height;
+    
+protected:
+    bool allowTranslate;
 };
 
 #endif	/* GLSPRITE_H */

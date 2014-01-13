@@ -9,7 +9,7 @@
 
 b2GLRectangle::b2GLRectangle(double width, double height, b2Vec2 position, b2World *world, fixture_properties properties) {
 
-    bodyDef.type = b2_dynamicBody;
+    bodyDef.type = properties.bodyType;
     bodyDef.position.Set(position.x, position.y);
     bodyDef.angle = 0;
 

@@ -4,7 +4,6 @@
 #include <GL/glut.h>
 
 #include "b2GL/b2GLDraw.h"
-#include "aux/Image.h"
 #include "b2GL/b2GLRectangle.h"
 #include "b2GL/b2GLCicle.h"
 #include "b2GL/b2GLMain.h"
@@ -43,7 +42,7 @@ int main(int argc, char** argv) {
 
     glutInitWindowPosition(60, 30);
     glutInitWindowSize(800, 800);
-    glutCreateWindow("box2d");
+    int WIN_ID = glutCreateWindow("box2d");
 
     glClearColor(0.0, 0.0, 0.0, 0.0);
 
@@ -61,7 +60,7 @@ int main(int argc, char** argv) {
     flags += b2Draw::e_centerOfMassBit;
     debug.SetFlags(flags);
 
-    box2dGLMain = new b2GLMain(world);
+    box2dGLMain = new b2GLMain(world, WIN_ID);
     box2dGLMain->init();
 
     glutReshapeFunc(scale);
@@ -71,5 +70,6 @@ int main(int argc, char** argv) {
     glutMotionFunc(on_mouse_move);
     glutIdleFunc(rotate);
     glutMainLoop();
+    free(box2dGLMain);
     return 0;
 } // main
