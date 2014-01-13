@@ -9,8 +9,7 @@
 #define	PLAYER_H
 
 #include <Box2D/Box2D.h>
-
-#include "b2GLBase.h"
+#include "../b2GL/b2GLBase.h"
 
 class Player : public b2GLBase {
 public:

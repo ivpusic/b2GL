@@ -5,10 +5,14 @@
  * Created on January 5, 2014, 12:18 AM
  */
 
-#include <stdio.h>
-
-#include "b2GLMain.h"
+#define DRAW_GL 1
+#define DRAW_BOX2D 1
 #define PTM_RATIO 10
+#define RADIANS_TO_DEGREES(__ANGLE__) ((__ANGLE__) / M_PI * 180.0) 
+
+
+#include <stdio.h>
+#include "b2GLMain.h"
 
 b2GLMain::b2GLMain(b2World *world) {
 
@@ -102,29 +106,54 @@ void b2GLMain::display() {
     world->ClearForces();
 
     for (b2Body *b = world->GetBodyList(); b; b = b->GetNext()) {
+        if (b->GetUserData() != NULL) {
+            sprite = (GLSprite*) b->GetUserData();
+            sprite->posx = b->GetPosition().x;
+            sprite->posy = b->GetPosition().y;
+            float angle = RADIANS_TO_DEGREES(b->GetAngle());
+            while (angle <= 0) {
+                angle += 360;
+            }
+            while (angle > 360) {
+                angle -= 360;
+            }
+            sprite->angle = angle;
+        }
         b2Vec2 curPos = b->GetPosition();
     }
 
-    world->DrawDebugData();
-    //image->drawImage();
+    if (DRAW_BOX2D) {
+        world->DrawDebugData();
+    }
+
+    // draw sprites
+    if (DRAW_GL) {
+    for (spriteIterator = sprites.begin(); spriteIterator != sprites.end(); ++spriteIterator) {
+        (*spriteIterator)->translate();
+        (*spriteIterator)->draw();
+    }
+    }
+
     glutSwapBuffers();
 }
 
-void b2GLMain::scale(int w, int h) {
-    XMAX = glutGet(GLUT_WINDOW_WIDTH) / PTM_RATIO;
-    double xrange = XMAX - XMIN;
-    double yrange = h * xrange / w;
+void b2GLMain::init() {
+    rectGL = new GLRect(1, 1);
+    glF = new GLF();
+    glI = new GLI();
 
-    glViewport(0, 0, w, h);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    YMAX = yrange;
-    gluOrtho2D(XMIN, XMAX, YMIN, YMAX);
+    sprites.push_back(glF);
+    sprites.push_back(glI);
+}
 
+void b2GLMain::onScaled() {
     player = new Player(2, 2, b2Vec2(128 / PTM_RATIO, 128 / PTM_RATIO), world);
     b2Body *f = drawF()->getBody();
     b2Body *o = drawO()->getBody();
     b2Body *i = drawI()->getBody();
+
+    f->SetUserData((void*) glF);
+    i->SetUserData((void*) glI);
 
     double jointDistance = 15;
 
@@ -141,6 +170,19 @@ void b2GLMain::scale(int w, int h) {
     world->CreateJoint(&djd);
 
     drawBounds();
+}
+
+void b2GLMain::scale(int w, int h) {
+    XMAX = glutGet(GLUT_WINDOW_WIDTH) / PTM_RATIO;
+    double xrange = XMAX - XMIN;
+    double yrange = h * xrange / w;
+
+    glViewport(0, 0, w, h);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    YMAX = yrange;
+    gluOrtho2D(XMIN, XMAX, YMIN, YMAX);
+    onScaled();
 }
 
 b2Vec2 b2GLMain::gl_to_box2d_vec2(b2Vec2 pos) {
@@ -170,16 +212,16 @@ void b2GLMain::on_mouse_button(int button, int state, int x, int y) {
                 b2Fixture *fixture = queryCallback.getFoundFixture();
                 if (fixture != NULL) {
                     if (mouseJoint != NULL) return;
-                        md.bodyA = groundBody;
-                        md.bodyB = fixture->GetBody();
-                        md.target = fixture->GetBody()->GetPosition();
-                        md.collideConnected = true;
-                        md.maxForce = 1000.0f * fixture->GetBody()->GetMass();
+                    md.bodyA = groundBody;
+                    md.bodyB = fixture->GetBody();
+                    md.target = fixture->GetBody()->GetPosition();
+                    md.collideConnected = true;
+                    md.maxForce = 1000.0f * fixture->GetBody()->GetMass();
 
-                        mouseJoint = (b2MouseJoint*) world->CreateJoint(&md);
-                        queryCallback.getFoundFixture()->GetBody()->SetAwake(true);
-                        mouseJoint->SetTarget(b2Vec2(x / PTM_RATIO, (glutGet(GLUT_WINDOW_HEIGHT) - y) / PTM_RATIO));
-                        leftMouseClick = true;
+                    mouseJoint = (b2MouseJoint*) world->CreateJoint(&md);
+                    queryCallback.getFoundFixture()->GetBody()->SetAwake(true);
+                    mouseJoint->SetTarget(b2Vec2(x / PTM_RATIO, (glutGet(GLUT_WINDOW_HEIGHT) - y) / PTM_RATIO));
+                    leftMouseClick = true;
                 }
             }
             break;

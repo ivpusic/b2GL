@@ -4,17 +4,25 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <logicalFolder name="f1" displayName="b2GL" projectFiles="true">
-        <itemPath>src/b2GLBase.h</itemPath>
-        <itemPath>src/b2GLCicle.h</itemPath>
-        <itemPath>src/b2GLDraw.h</itemPath>
-        <itemPath>src/b2GLMain.h</itemPath>
-        <itemPath>src/b2GLMouseClickCallback.h</itemPath>
-        <itemPath>src/b2GLRectangle.h</itemPath>
-        <itemPath>src/b2GLTypes.h</itemPath>
+      <logicalFolder name="f3" displayName="aux" projectFiles="true">
+        <itemPath>src/aux/Image.h</itemPath>
+        <itemPath>src/aux/Player.h</itemPath>
       </logicalFolder>
-      <itemPath>src/Image.h</itemPath>
-      <itemPath>src/Player.h</itemPath>
+      <logicalFolder name="f1" displayName="b2GL" projectFiles="true">
+        <itemPath>src/b2GL/b2GLBase.h</itemPath>
+        <itemPath>src/b2GL/b2GLCicle.h</itemPath>
+        <itemPath>src/b2GL/b2GLDraw.h</itemPath>
+        <itemPath>src/b2GL/b2GLMain.h</itemPath>
+        <itemPath>src/b2GL/b2GLMouseClickCallback.h</itemPath>
+        <itemPath>src/b2GL/b2GLRectangle.h</itemPath>
+        <itemPath>src/b2GL/b2GLTypes.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f2" displayName="GL" projectFiles="true">
+        <itemPath>src/GL/GLF.h</itemPath>
+        <itemPath>src/GL/GLI.h</itemPath>
+        <itemPath>src/GL/GLRect.h</itemPath>
+        <itemPath>src/GL/GLSprite.h</itemPath>
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -23,16 +31,24 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <logicalFolder name="f1" displayName="b2GL" projectFiles="true">
-        <itemPath>src/b2GLBase.cpp</itemPath>
-        <itemPath>src/b2GLCicle.cpp</itemPath>
-        <itemPath>src/b2GLDraw.cpp</itemPath>
-        <itemPath>src/b2GLMain.cpp</itemPath>
-        <itemPath>src/b2GLMouseClickCallback.cpp</itemPath>
-        <itemPath>src/b2GLRectangle.cpp</itemPath>
+      <logicalFolder name="f3" displayName="aux" projectFiles="true">
+        <itemPath>src/aux/Image.cpp</itemPath>
+        <itemPath>src/aux/Player.cpp</itemPath>
       </logicalFolder>
-      <itemPath>src/Image.cpp</itemPath>
-      <itemPath>src/Player.cpp</itemPath>
+      <logicalFolder name="f1" displayName="b2GL" projectFiles="true">
+        <itemPath>src/b2GL/b2GLBase.cpp</itemPath>
+        <itemPath>src/b2GL/b2GLCicle.cpp</itemPath>
+        <itemPath>src/b2GL/b2GLDraw.cpp</itemPath>
+        <itemPath>src/b2GL/b2GLMain.cpp</itemPath>
+        <itemPath>src/b2GL/b2GLMouseClickCallback.cpp</itemPath>
+        <itemPath>src/b2GL/b2GLRectangle.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f2" displayName="GL" projectFiles="true">
+        <itemPath>src/GL/GLF.cpp</itemPath>
+        <itemPath>src/GL/GLI.cpp</itemPath>
+        <itemPath>src/GL/GLRect.cpp</itemPath>
+        <itemPath>src/GL/GLSprite.cpp</itemPath>
+      </logicalFolder>
       <itemPath>src/main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -68,39 +84,58 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="src/Image.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/GL/GLF.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/Image.h" ex="false" tool="3" flavor2="0">
+      <item path="src/GL/GLF.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/Player.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/GL/GLI.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/Player.h" ex="false" tool="3" flavor2="0">
+      <item path="src/GL/GLI.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/b2GLBase.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/GL/GLRect.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/b2GLBase.h" ex="false" tool="3" flavor2="0">
+      <item path="src/GL/GLRect.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/b2GLCicle.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/GL/GLSprite.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/b2GLCicle.h" ex="false" tool="3" flavor2="0">
+      <item path="src/GL/GLSprite.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/b2GLDraw.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/aux/Image.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/b2GLDraw.h" ex="false" tool="3" flavor2="0">
+      <item path="src/aux/Image.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/b2GLMain.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/aux/Player.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/b2GLMain.h" ex="false" tool="3" flavor2="0">
+      <item path="src/aux/Player.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/b2GLMouseClickCallback.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/b2GL/b2GLBase.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/b2GLMouseClickCallback.h" ex="false" tool="3" flavor2="0">
+      <item path="src/b2GL/b2GLBase.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/b2GLRectangle.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/b2GL/b2GLCicle.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/b2GLRectangle.h" ex="false" tool="3" flavor2="0">
+      <item path="src/b2GL/b2GLCicle.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/b2GLTypes.h" ex="false" tool="3" flavor2="0">
+      <item path="src/b2GL/b2GLDraw.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/b2GL/b2GLDraw.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/b2GL/b2GLMain.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/b2GL/b2GLMain.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/b2GL/b2GLMouseClickCallback.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/b2GL/b2GLMouseClickCallback.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/b2GL/b2GLRectangle.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/b2GL/b2GLRectangle.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/b2GL/b2GLTypes.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -125,39 +160,58 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="src/Image.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/GL/GLF.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/Image.h" ex="false" tool="3" flavor2="0">
+      <item path="src/GL/GLF.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/Player.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/GL/GLI.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/Player.h" ex="false" tool="3" flavor2="0">
+      <item path="src/GL/GLI.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/b2GLBase.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/GL/GLRect.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/b2GLBase.h" ex="false" tool="3" flavor2="0">
+      <item path="src/GL/GLRect.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/b2GLCicle.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/GL/GLSprite.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/b2GLCicle.h" ex="false" tool="3" flavor2="0">
+      <item path="src/GL/GLSprite.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/b2GLDraw.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/aux/Image.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/b2GLDraw.h" ex="false" tool="3" flavor2="0">
+      <item path="src/aux/Image.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/b2GLMain.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/aux/Player.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/b2GLMain.h" ex="false" tool="3" flavor2="0">
+      <item path="src/aux/Player.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/b2GLMouseClickCallback.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/b2GL/b2GLBase.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/b2GLMouseClickCallback.h" ex="false" tool="3" flavor2="0">
+      <item path="src/b2GL/b2GLBase.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/b2GLRectangle.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/b2GL/b2GLCicle.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/b2GLRectangle.h" ex="false" tool="3" flavor2="0">
+      <item path="src/b2GL/b2GLCicle.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/b2GLTypes.h" ex="false" tool="3" flavor2="0">
+      <item path="src/b2GL/b2GLDraw.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/b2GL/b2GLDraw.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/b2GL/b2GLMain.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/b2GL/b2GLMain.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/b2GL/b2GLMouseClickCallback.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/b2GL/b2GLMouseClickCallback.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/b2GL/b2GLRectangle.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/b2GL/b2GLRectangle.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/b2GL/b2GLTypes.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
       </item>

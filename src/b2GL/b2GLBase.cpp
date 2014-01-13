@@ -7,3 +7,8 @@ b2Body *b2GLBase::getBody() {
 b2Fixture *b2GLBase::getFixture() {
     return fixture;
 }
+
+void b2GLBase::setData(void* data) {
+    fixture->SetUserData(data);
+}
+

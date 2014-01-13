@@ -3,11 +3,11 @@
 #include <math.h>
 #include <GL/glut.h>
 
-#include "b2GLDraw.h"
-#include "Image.h"
-#include "b2GLRectangle.h"
-#include "b2GLCicle.h"
-#include "b2GLMain.h"
+#include "b2GL/b2GLDraw.h"
+#include "aux/Image.h"
+#include "b2GL/b2GLRectangle.h"
+#include "b2GL/b2GLCicle.h"
+#include "b2GL/b2GLMain.h"
 
 b2GLMain *box2dGLMain;
 b2World *world;
@@ -62,9 +62,10 @@ int main(int argc, char** argv) {
     debug.SetFlags(flags);
 
     box2dGLMain = new b2GLMain(world);
+    box2dGLMain->init();
 
-    glutDisplayFunc(display);
     glutReshapeFunc(scale);
+    glutDisplayFunc(display);
     glutKeyboardFunc(on_key);
     glutMouseFunc(on_mouse_button);
     glutMotionFunc(on_mouse_move);

@@ -35,14 +35,18 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/src/Image.o \
-	${OBJECTDIR}/src/Player.o \
-	${OBJECTDIR}/src/b2GLBase.o \
-	${OBJECTDIR}/src/b2GLCicle.o \
-	${OBJECTDIR}/src/b2GLDraw.o \
-	${OBJECTDIR}/src/b2GLMain.o \
-	${OBJECTDIR}/src/b2GLMouseClickCallback.o \
-	${OBJECTDIR}/src/b2GLRectangle.o \
+	${OBJECTDIR}/src/GL/GLF.o \
+	${OBJECTDIR}/src/GL/GLI.o \
+	${OBJECTDIR}/src/GL/GLRect.o \
+	${OBJECTDIR}/src/GL/GLSprite.o \
+	${OBJECTDIR}/src/aux/Image.o \
+	${OBJECTDIR}/src/aux/Player.o \
+	${OBJECTDIR}/src/b2GL/b2GLBase.o \
+	${OBJECTDIR}/src/b2GL/b2GLCicle.o \
+	${OBJECTDIR}/src/b2GL/b2GLDraw.o \
+	${OBJECTDIR}/src/b2GL/b2GLMain.o \
+	${OBJECTDIR}/src/b2GL/b2GLMouseClickCallback.o \
+	${OBJECTDIR}/src/b2GL/b2GLRectangle.o \
 	${OBJECTDIR}/src/main.o
 
 
@@ -70,45 +74,65 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/b2gl: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/b2gl ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/src/Image.o: src/Image.cpp 
-	${MKDIR} -p ${OBJECTDIR}/src
+${OBJECTDIR}/src/GL/GLF.o: src/GL/GLF.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/GL
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/Image.o src/Image.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/GL/GLF.o src/GL/GLF.cpp
 
-${OBJECTDIR}/src/Player.o: src/Player.cpp 
-	${MKDIR} -p ${OBJECTDIR}/src
+${OBJECTDIR}/src/GL/GLI.o: src/GL/GLI.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/GL
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/Player.o src/Player.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/GL/GLI.o src/GL/GLI.cpp
 
-${OBJECTDIR}/src/b2GLBase.o: src/b2GLBase.cpp 
-	${MKDIR} -p ${OBJECTDIR}/src
+${OBJECTDIR}/src/GL/GLRect.o: src/GL/GLRect.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/GL
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/b2GLBase.o src/b2GLBase.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/GL/GLRect.o src/GL/GLRect.cpp
 
-${OBJECTDIR}/src/b2GLCicle.o: src/b2GLCicle.cpp 
-	${MKDIR} -p ${OBJECTDIR}/src
+${OBJECTDIR}/src/GL/GLSprite.o: src/GL/GLSprite.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/GL
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/b2GLCicle.o src/b2GLCicle.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/GL/GLSprite.o src/GL/GLSprite.cpp
 
-${OBJECTDIR}/src/b2GLDraw.o: src/b2GLDraw.cpp 
-	${MKDIR} -p ${OBJECTDIR}/src
+${OBJECTDIR}/src/aux/Image.o: src/aux/Image.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/aux
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/b2GLDraw.o src/b2GLDraw.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/aux/Image.o src/aux/Image.cpp
 
-${OBJECTDIR}/src/b2GLMain.o: src/b2GLMain.cpp 
-	${MKDIR} -p ${OBJECTDIR}/src
+${OBJECTDIR}/src/aux/Player.o: src/aux/Player.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/aux
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/b2GLMain.o src/b2GLMain.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/aux/Player.o src/aux/Player.cpp
 
-${OBJECTDIR}/src/b2GLMouseClickCallback.o: src/b2GLMouseClickCallback.cpp 
-	${MKDIR} -p ${OBJECTDIR}/src
+${OBJECTDIR}/src/b2GL/b2GLBase.o: src/b2GL/b2GLBase.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/b2GL
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/b2GLMouseClickCallback.o src/b2GLMouseClickCallback.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/b2GL/b2GLBase.o src/b2GL/b2GLBase.cpp
 
-${OBJECTDIR}/src/b2GLRectangle.o: src/b2GLRectangle.cpp 
-	${MKDIR} -p ${OBJECTDIR}/src
+${OBJECTDIR}/src/b2GL/b2GLCicle.o: src/b2GL/b2GLCicle.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/b2GL
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/b2GLRectangle.o src/b2GLRectangle.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/b2GL/b2GLCicle.o src/b2GL/b2GLCicle.cpp
+
+${OBJECTDIR}/src/b2GL/b2GLDraw.o: src/b2GL/b2GLDraw.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/b2GL
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/b2GL/b2GLDraw.o src/b2GL/b2GLDraw.cpp
+
+${OBJECTDIR}/src/b2GL/b2GLMain.o: src/b2GL/b2GLMain.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/b2GL
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/b2GL/b2GLMain.o src/b2GL/b2GLMain.cpp
+
+${OBJECTDIR}/src/b2GL/b2GLMouseClickCallback.o: src/b2GL/b2GLMouseClickCallback.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/b2GL
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/b2GL/b2GLMouseClickCallback.o src/b2GL/b2GLMouseClickCallback.cpp
+
+${OBJECTDIR}/src/b2GL/b2GLRectangle.o: src/b2GL/b2GLRectangle.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/b2GL
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/b2GL/b2GLRectangle.o src/b2GL/b2GLRectangle.cpp
 
 ${OBJECTDIR}/src/main.o: src/main.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src

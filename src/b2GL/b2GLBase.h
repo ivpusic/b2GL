@@ -17,6 +17,8 @@ protected:
     b2Fixture *fixture;
     b2FixtureDef fixtureDef;
 
+    void setData(void *data);
+    
 public:
     b2Body *getBody();
     b2Fixture *getFixture();
