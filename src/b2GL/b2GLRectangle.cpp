@@ -22,5 +22,6 @@ b2GLRectangle::b2GLRectangle(double width, double height, b2Vec2 position, b2Wor
     // define fixture
     fixtureDef.shape = &rectangleShape;
     fixtureDef.density = properties.density;
+    fixtureDef.restitution = properties.restitution;
     body->CreateFixture(&fixtureDef);
 }

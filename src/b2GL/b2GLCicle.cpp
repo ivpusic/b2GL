@@ -21,6 +21,7 @@ b2GLCicle::b2GLCicle(double radius, b2Vec2 position, b2World *world, fixture_pro
     // define fixture
     fixtureDef.shape = &cicleShape;
     fixtureDef.density = properties.density;
+    fixtureDef.restitution = properties.restitution;
     body->CreateFixture(&fixtureDef);
 }
 

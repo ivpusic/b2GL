@@ -13,11 +13,13 @@ b2GLMain::b2GLMain(b2World *world, int WIN_ID) {
     XMIN = 0;
     YMIN = 0;
 
+    this->bulletSpeed = 350;
+    this->bulletAngle = 70;
     mouseJoint = NULL;
     this->world = world;
     timeStep = 1.0f / 60.f;
-    velocityIterations = 10;
-    positionIterations = 10;
+    velocityIterations = 8;
+    positionIterations = 3;
     leftMouseClick = false;
     this->WIN_ID = WIN_ID;
 }
@@ -62,8 +64,8 @@ b2GLCicle *b2GLMain::drawO() {
     double r = 3;
     fixture_properties properties;
     properties.density = 1.0;
-    properties.bodyType = b2_dynamicBody;
-
+    properties.restitution = 0.1f;
+    
     b2GLCicle *cicle = new b2GLCicle(3, b2Vec2(35 + r, 30 + r), world, properties);
 
     return cicle;
@@ -73,9 +75,7 @@ b2GLRectangle *b2GLMain::drawI() {
     fixture_properties properties;
     properties.density = 1.0;
     properties.bodyType = b2_dynamicBody;
-
     b2GLRectangle *i = new b2GLRectangle(1, 4, b2Vec2(50, 20), world, properties);
-
     return i;
 }
 
@@ -142,14 +142,12 @@ void b2GLMain::display() {
 
     for (b2Body *b = world->GetBodyList(); b; b = b->GetNext()) {
         if (b->GetUserData() != NULL) {
-            if (b->GetType() == b2_dynamicBody) {
-                sprite = (GLSprite*) b->GetUserData();
-                sprite->posx = b->GetPosition().x;
-                sprite->posy = b->GetPosition().y;
-                float angle = RADIANS_TO_DEGREES(b->GetAngle());
-                sprite->angle = angle;
-                sprite->angleRadians = b->GetAngle();
-            }
+            sprite = (GLSprite*) b->GetUserData();
+            sprite->posx = b->GetPosition().x;
+            sprite->posy = b->GetPosition().y;
+            float angle = RADIANS_TO_DEGREES(b->GetAngle());
+            sprite->angle = angle;
+            sprite->angleRadians = b->GetAngle();
         }
     }
 
@@ -180,7 +178,7 @@ void b2GLMain::init() {
     sprites.push_back(glF);
     sprites.push_back(glI);
     sprites.push_back(glO);
-    sprites.push_back(track);
+    sprites.push_back(track->tex);
 }
 
 void b2GLMain::onScaled() {
@@ -223,11 +221,11 @@ void b2GLMain::scale(int w, int h) {
     onScaled();
 }
 
-b2Vec2 b2GLMain::gl_to_box2d_vec2(b2Vec2 pos) {
+b2Vec2 b2GLMain::glToBox2DVec2(b2Vec2 pos) {
     return b2Vec2(pos.x, YMAX - pos.y);
 }
 
-void b2GLMain::on_mouse_button(int button, int state, int x, int y) {
+void b2GLMain::onMouseButton(int button, int state, int x, int y) {
     b2MouseJointDef md;
 
     switch (button) {
@@ -243,8 +241,8 @@ void b2GLMain::on_mouse_button(int button, int state, int x, int y) {
                 // mouse up
                 b2GLMouseClickCallback queryCallback;
                 b2AABB aabb;
-                aabb.lowerBound = gl_to_box2d_vec2(b2Vec2((x + 0.001) / PTM_RATIO, (y + 0.001) / PTM_RATIO));
-                aabb.upperBound = gl_to_box2d_vec2(b2Vec2((x - 0.001) / PTM_RATIO, (y - 0.001) / PTM_RATIO));
+                aabb.lowerBound = glToBox2DVec2(b2Vec2((x + 0.001) / PTM_RATIO, (y + 0.001) / PTM_RATIO));
+                aabb.upperBound = glToBox2DVec2(b2Vec2((x - 0.001) / PTM_RATIO, (y - 0.001) / PTM_RATIO));
                 world->QueryAABB(&queryCallback, aabb);
 
                 b2Fixture *fixture = queryCallback.getFoundFixture();
@@ -268,7 +266,8 @@ void b2GLMain::on_mouse_button(int button, int state, int x, int y) {
         case GLUT_RIGHT_BUTTON:
             if (state == GLUT_DOWN) {
                 fixture_properties prop;
-                prop.density = 1.0;
+                prop.density = 1.0f;
+                prop.restitution = 0.8f;
                 prop.bodyType = b2_dynamicBody;
                 GLO *o = new GLO(6);
                 b2GLCicle *c = new b2GLCicle(3, b2Vec2(70, 73), world, prop);
@@ -281,7 +280,32 @@ void b2GLMain::on_mouse_button(int button, int state, int x, int y) {
     glutPostRedisplay();
 }
 
-void b2GLMain::on_key_down(unsigned char c, int x, int y) {
+void b2GLMain::onSpecialKeyDown(int c, int x, int y) {
+
+
+    if (c == GLUT_KEY_LEFT) {
+        if (bulletAngle < 90) {
+            bulletAngle++;
+        }
+    }
+
+    if (c == GLUT_KEY_RIGHT) {
+        if (bulletAngle > 0) {
+            bulletAngle--;
+        }
+    }
+
+    if (c == GLUT_KEY_DOWN) {
+        bulletSpeed -= 5;
+    }
+
+    if (c == GLUT_KEY_UP) {
+        bulletSpeed += 5;
+    }
+}
+
+void b2GLMain::onKeyDown(unsigned char c, int x, int y) {
+
     if (c == 'q') {
         glutDestroyWindow(WIN_ID);
         this->~b2GLMain();
@@ -291,9 +315,13 @@ void b2GLMain::on_key_down(unsigned char c, int x, int y) {
     if (c == 'G') DRAW_GL = 1;
     if (c == 'b') DRAW_BOX2D = 0;
     if (c == 'B') DRAW_BOX2D = 1;
+    if (c == 's') {
+        GLBullet *bullet = new GLBullet(world, bulletSpeed, DEGREES_TO_RADIANS(bulletAngle));
+        sprites.push_back(bullet->tex);
+    }
 }
 
-void b2GLMain::on_mouse_move(int x, int y) {
+void b2GLMain::onMouseMove(int x, int y) {
     if (leftMouseClick) {
         if (mouseJoint == NULL) return;
         mouseJoint->SetTarget(b2Vec2(x / PTM_RATIO, (glutGet(GLUT_WINDOW_HEIGHT) - y) / PTM_RATIO));

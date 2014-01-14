@@ -18,11 +18,12 @@
 
 #include "../coreGL/GLRect.h"
 #include "../coreGL/GLSprite.h"
+#include "../b2GL/globals.h"
+#include "../userGL/GLBullet.h"
 #include "../userGL/GLF.h"
 #include "../userGL/GLI.h"
 #include "../userGL/GLO.h"
 #include "../userGL/GLTrack.h"
-#include "../b2GL/globals.h"
 
 class b2GLMain {
 public:
@@ -41,12 +42,13 @@ public:
 
     b2GLMain(b2World *world, int WIN_ID);
     void scale(int w, int h);
-    void on_mouse_button(int button, int state, int x, int y);
-    void on_mouse_move(int x, int y);
-    void on_key_down(unsigned char c, int x, int y);
+    void onMouseButton(int button, int state, int x, int y);
+    void onMouseMove(int x, int y);
+    void onKeyDown(unsigned char c, int x, int y);
+    void onSpecialKeyDown(int c, int x, int y);
     void display();
     void init();
-    b2Vec2 gl_to_box2d_vec2(b2Vec2 pos);
+    b2Vec2 glToBox2DVec2(b2Vec2 pos);
     virtual ~b2GLMain();
 
 private:
@@ -92,6 +94,9 @@ private:
     GLSpriteTexture2D *fStandSprite;
     GLSpriteTexture2D *oStandSprite;
     GLSpriteTexture2D *iStandSprite;
+    
+    double bulletSpeed;
+    double bulletAngle;
 };
 
 #endif	/* B2GLMAIN_H */

@@ -55,4 +55,7 @@ void GLSpriteTexture2D::draw() {
 
 // overrides default implementation
 void GLSpriteTexture2D::translate() {
+    if (allowTranslate) {
+        GLSprite::translate();
+    }
 }

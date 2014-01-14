@@ -46,6 +46,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/src/coreGL/GLSprite.o \
 	${OBJECTDIR}/src/coreGL/GLSpriteTexture2D.o \
 	${OBJECTDIR}/src/main.o \
+	${OBJECTDIR}/src/userGL/GLBullet.o \
 	${OBJECTDIR}/src/userGL/GLF.o \
 	${OBJECTDIR}/src/userGL/GLI.o \
 	${OBJECTDIR}/src/userGL/GLO.o \
@@ -130,6 +131,11 @@ ${OBJECTDIR}/src/main.o: src/main.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/home/ivpusic/libs/Box2D_v2.3.0/Box2D -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/main.o src/main.cpp
+
+${OBJECTDIR}/src/userGL/GLBullet.o: src/userGL/GLBullet.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/userGL
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/home/ivpusic/libs/Box2D_v2.3.0/Box2D -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/userGL/GLBullet.o src/userGL/GLBullet.cpp
 
 ${OBJECTDIR}/src/userGL/GLF.o: src/userGL/GLF.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src/userGL

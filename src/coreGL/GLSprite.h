@@ -28,13 +28,11 @@ public:
     double posy;
     double angle;
     double angleRadians;
+    bool allowTranslate;
 
 private:
     double width;
     double height;
-    
-protected:
-    bool allowTranslate;
 };
 
 #endif	/* GLSPRITE_H */

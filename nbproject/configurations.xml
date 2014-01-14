@@ -20,6 +20,7 @@
         <itemPath>src/coreGL/GLSpriteTexture2D.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f4" displayName="userGL" projectFiles="true">
+        <itemPath>src/userGL/GLBullet.h</itemPath>
         <itemPath>src/userGL/GLF.h</itemPath>
         <itemPath>src/userGL/GLI.h</itemPath>
         <itemPath>src/userGL/GLO.h</itemPath>
@@ -49,6 +50,7 @@
         <itemPath>src/coreGL/GLSpriteTexture2D.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f4" displayName="userGL" projectFiles="true">
+        <itemPath>src/userGL/GLBullet.cpp</itemPath>
         <itemPath>src/userGL/GLF.cpp</itemPath>
         <itemPath>src/userGL/GLI.cpp</itemPath>
         <itemPath>src/userGL/GLO.cpp</itemPath>
@@ -139,6 +141,10 @@
       </item>
       <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="src/userGL/GLBullet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/userGL/GLBullet.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/userGL/GLF.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/userGL/GLF.h" ex="false" tool="3" flavor2="0">
@@ -224,6 +230,10 @@
       <item path="src/coreGL/GLSpriteTexture2D.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/userGL/GLBullet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/userGL/GLBullet.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/userGL/GLF.cpp" ex="false" tool="1" flavor2="0">
       </item>

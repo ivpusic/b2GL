@@ -19,16 +19,20 @@ void scale(int w, int h) {
     box2dGLMain->scale(w, h);
 }
 
+void on_special_key(int c, int x, int y) {
+    box2dGLMain->onSpecialKeyDown(c, x, y);
+}
+
 void on_key(unsigned char c, int x, int y) {
-    box2dGLMain->on_key_down(c, x, y);
+    box2dGLMain->onKeyDown(c, x, y);
 }
 
 void on_mouse_button(int button, int state, int x, int y) {
-    box2dGLMain->on_mouse_button(button, state, x, y);
+    box2dGLMain->onMouseButton(button, state, x, y);
 }
 
 void on_mouse_move(int x, int y) {
-    box2dGLMain->on_mouse_move(x, y);
+    box2dGLMain->onMouseMove(x, y);
 }
 
 void rotate(void) {
@@ -68,6 +72,7 @@ int main(int argc, char** argv) {
     glutKeyboardFunc(on_key);
     glutMouseFunc(on_mouse_button);
     glutMotionFunc(on_mouse_move);
+    glutSpecialFunc(on_special_key);
     glutIdleFunc(rotate);
     glutMainLoop();
     free(box2dGLMain);

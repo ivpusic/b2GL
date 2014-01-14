@@ -11,8 +11,10 @@
 #include <Box2D/Box2D.h>
 
 struct fixture_properties {
-    double density;
-    double friction;
+    fixture_properties() : density(0.0f), friction(0.0f), restitution(0.0f), bodyType(b2_dynamicBody) {}
+    float density;
+    float friction;
+    float restitution;
     b2BodyType bodyType;
 };
 

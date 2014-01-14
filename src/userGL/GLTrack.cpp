@@ -20,10 +20,9 @@ GLTrack::GLTrack(b2World *world) {
     tex->posx = 70;
     tex->posy = 70;
     tex->angle = angle;
+    tex->allowTranslate = true;
 }
 
 void GLTrack::draw() {
-    GLSprite *s = (GLSprite*)tex;
-    s->translate();
     tex->draw();
 }
