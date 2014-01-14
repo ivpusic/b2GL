@@ -30,11 +30,11 @@ void GLSprite::translate() {
 }
 
 void GLSprite::setWidth(double w) {
-    width = w * 2;
+    width = w;
 }
 
 void GLSprite::setHeight(double h) {
-    height = h * 2;
+    height = h;
 }
 
 double GLSprite::getWidth() {

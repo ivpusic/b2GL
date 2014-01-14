@@ -8,7 +8,6 @@
 #include "GLSpriteTexture2D.h"
 
 GLSpriteTexture2D::GLSpriteTexture2D() {
-
 }
 
 GLSpriteTexture2D::GLSpriteTexture2D(char *path) {

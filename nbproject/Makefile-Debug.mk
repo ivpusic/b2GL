@@ -48,7 +48,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/src/main.o \
 	${OBJECTDIR}/src/userGL/GLF.o \
 	${OBJECTDIR}/src/userGL/GLI.o \
-	${OBJECTDIR}/src/userGL/GLO.o
+	${OBJECTDIR}/src/userGL/GLO.o \
+	${OBJECTDIR}/src/userGL/GLTrack.o
 
 
 # C Compiler Flags
@@ -144,6 +145,11 @@ ${OBJECTDIR}/src/userGL/GLO.o: src/userGL/GLO.cpp
 	${MKDIR} -p ${OBJECTDIR}/src/userGL
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/home/ivpusic/libs/Box2D_v2.3.0/Box2D -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/userGL/GLO.o src/userGL/GLO.cpp
+
+${OBJECTDIR}/src/userGL/GLTrack.o: src/userGL/GLTrack.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src/userGL
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/home/ivpusic/libs/Box2D_v2.3.0/Box2D -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/userGL/GLTrack.o src/userGL/GLTrack.cpp
 
 # Subprojects
 .build-subprojects:

@@ -9,12 +9,11 @@
 
 GLI::GLI() {
     init();
-    setWidth(1);
-    setHeight(4);
+    setWidth(2);
+    setHeight(8);
 }
 
 void GLI::draw() {
-    glColor3d(0, 1, 0);
-    GLRect *iRect = new GLRect(1, 4);
+    GLRect *iRect = new GLRect(2, 8);
     iRect->draw();
 }

@@ -21,6 +21,7 @@
 #include "../userGL/GLF.h"
 #include "../userGL/GLI.h"
 #include "../userGL/GLO.h"
+#include "../userGL/GLTrack.h"
 #include "../b2GL/globals.h"
 
 class b2GLMain {
@@ -64,6 +65,9 @@ private:
     std::list<GLSprite*> sprites;
     std::list<GLSprite*>::iterator spriteIterator;
 
+    std::list<b2GLBase*> phBodies;
+    std::list<b2GLBase*>::iterator phBodiesIterator;
+
     b2GLRectangle *rect;
     b2GLRectangle *rect1;
     b2GLRectangle *rect2;
@@ -76,6 +80,7 @@ private:
     GLF *glF;
     GLI *glI;
     GLO *glO;
+    GLTrack *track;
 
     GLSpriteTexture2D *background;
     b2MouseJoint *mouseJoint;

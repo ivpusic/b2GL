@@ -9,14 +9,14 @@
 
 GLF::GLF() {
     init();
-    setWidth(1);
-    setHeight(1);
+    setWidth(2);
+    setHeight(2);
 }
 
 void GLF::draw() {
     glColor3d(1, 0, 0);
-    GLRect *r1 = new GLRect(1, 4);
-    GLRect *r2 = new GLRect(1, 1);
+    GLRect *r1 = new GLRect(2, 8);
+    GLRect *r2 = new GLRect(2, 2);
 
     r1->draw();
     glTranslated(0, getWidth(), 0);

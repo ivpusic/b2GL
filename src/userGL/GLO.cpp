@@ -6,9 +6,9 @@
  */
 #include "GLO.h"
 
-GLO::GLO(double r) {
+GLO::GLO(double R) {
     init();
-    this->r = r;
+    this->r = R;
     setWidth(r);
     setHeight(r);
     tex = new GLSpriteTexture2D((char*) "src/assets/o_letter.png");
