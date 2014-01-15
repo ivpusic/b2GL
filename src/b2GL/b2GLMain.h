@@ -56,6 +56,7 @@ private:
     b2GLRectangle *drawF();
     b2GLCicle *drawO();
     b2GLRectangle *drawI();
+    void drawThank(double r);
     void drawStands();
     void drawBox(double x, double y, int width, int height);
     void drawBounds();
@@ -94,8 +95,9 @@ private:
     GLSpriteTexture2D *fStandSprite;
     GLSpriteTexture2D *oStandSprite;
     GLSpriteTexture2D *iStandSprite;
+    GLSpriteTexture2D *tube;
     
-    double bulletSpeed;
+    double bulletPower;
     double bulletAngle;
 };
 

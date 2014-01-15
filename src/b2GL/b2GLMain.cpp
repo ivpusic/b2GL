@@ -13,13 +13,13 @@ b2GLMain::b2GLMain(b2World *world, int WIN_ID) {
     XMIN = 0;
     YMIN = 0;
 
-    this->bulletSpeed = 350;
-    this->bulletAngle = 70;
+    this->bulletPower = 100;
+    this->bulletAngle = 45;
     mouseJoint = NULL;
     this->world = world;
     timeStep = 1.0f / 60.f;
-    velocityIterations = 8;
-    positionIterations = 3;
+    velocityIterations = 5;
+    positionIterations = 2;
     leftMouseClick = false;
     this->WIN_ID = WIN_ID;
 }
@@ -65,7 +65,7 @@ b2GLCicle *b2GLMain::drawO() {
     fixture_properties properties;
     properties.density = 1.0;
     properties.restitution = 0.1f;
-    
+
     b2GLCicle *cicle = new b2GLCicle(3, b2Vec2(35 + r, 30 + r), world, properties);
 
     return cicle;
@@ -79,11 +79,28 @@ b2GLRectangle *b2GLMain::drawI() {
     return i;
 }
 
+void b2GLMain::drawThank(double r) {
+    glPushMatrix();
+    tube->angle = bulletAngle;
+    tube->translate();
+    tube->draw();
+    glPopMatrix();
+    
+    glColor3d(0, 1, 0);
+    glBegin(GL_TRIANGLE_FAN);
+    double i;
+    glVertex2d(0, 0);
+    for (i = 0; i <= M_PI / 2; i += M_PI / 10) {
+        glVertex2d(r * cos(i), r * sin(i));
+    }
+    glEnd();
+}
+
 void b2GLMain::drawStands() {
     fixture_properties properties;
     properties.density = 1.0;
     properties.bodyType = b2_staticBody;
-
+    
     fStand = new b2GLRectangle(5, 0.5, b2Vec2(20, 40), world, properties);
     fStandSprite = new GLSpriteTexture2D((char*) "src/assets/stand.png");
     fStandSprite->posx = 20;
@@ -92,7 +109,7 @@ void b2GLMain::drawStands() {
     fStand->getBody()->SetUserData((void*) fStandSprite);
     phBodies.push_back(fStand);
 
-    oStand = new b2GLRectangle(6, 0.5, b2Vec2(38, 30), world, properties);
+    oStand = new b2GLRectangle(5, 0.5, b2Vec2(38, 30), world, properties);
     oStandSprite = new GLSpriteTexture2D((char*) "src/assets/stand.png");
     oStandSprite->posx = 35;
     oStandSprite->posy = 30;
@@ -100,7 +117,7 @@ void b2GLMain::drawStands() {
     oStand->getBody()->SetUserData((void*) oStandSprite);
     phBodies.push_back(oStand);
 
-    iStand = new b2GLRectangle(6, 0.5, b2Vec2(50, 20), world, properties);
+    iStand = new b2GLRectangle(5, 0.5, b2Vec2(50, 20), world, properties);
     iStandSprite = new GLSpriteTexture2D((char*) "src/assets/stand.png");
     iStandSprite->posx = 50;
     iStandSprite->posy = 20;
@@ -157,10 +174,13 @@ void b2GLMain::display() {
 
     // draw sprites
     if (DRAW_GL) {
+        glPushMatrix();
         for (spriteIterator = sprites.begin(); spriteIterator != sprites.end(); ++spriteIterator) {
             (*spriteIterator)->translate();
             (*spriteIterator)->draw();
         }
+        glPopMatrix();
+        drawThank(5);
     }
 
     glutSwapBuffers();
@@ -173,6 +193,7 @@ void b2GLMain::init() {
     glO = new GLO(6);
     glI = new GLI();
     track = new GLTrack(world);
+    tube = new GLSpriteTexture2D((char*)"src/assets/tube.png");
 
     sprites.push_back(background);
     sprites.push_back(glF);
@@ -285,22 +306,22 @@ void b2GLMain::onSpecialKeyDown(int c, int x, int y) {
 
     if (c == GLUT_KEY_LEFT) {
         if (bulletAngle < 90) {
-            bulletAngle++;
+            bulletAngle += 2;
         }
     }
 
     if (c == GLUT_KEY_RIGHT) {
         if (bulletAngle > 0) {
-            bulletAngle--;
+            bulletAngle -= 2;
         }
     }
 
     if (c == GLUT_KEY_DOWN) {
-        bulletSpeed -= 5;
+        bulletPower -= 5;
     }
 
     if (c == GLUT_KEY_UP) {
-        bulletSpeed += 5;
+        bulletPower += 5;
     }
 }
 
@@ -316,7 +337,7 @@ void b2GLMain::onKeyDown(unsigned char c, int x, int y) {
     if (c == 'b') DRAW_BOX2D = 0;
     if (c == 'B') DRAW_BOX2D = 1;
     if (c == 's') {
-        GLBullet *bullet = new GLBullet(world, bulletSpeed, DEGREES_TO_RADIANS(bulletAngle));
+        GLBullet *bullet = new GLBullet(world, bulletPower, DEGREES_TO_RADIANS(bulletAngle));
         sprites.push_back(bullet->tex);
     }
 }
@@ -349,6 +370,8 @@ b2GLMain::~b2GLMain() {
     for (spriteIterator = sprites.begin(); spriteIterator != sprites.end(); ++spriteIterator) {
         free((*spriteIterator));
     }
+    
+    free(tube);
 
     printf("Dealloc finished! \n");
 }

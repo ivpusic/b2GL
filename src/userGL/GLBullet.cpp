@@ -16,7 +16,7 @@ GLBullet::GLBullet(b2World *world, double power, double angle) {
     fixture_properties props;
     props.density = 1;
     props.bodyType = b2_dynamicBody;
-    bullet = new b2GLRectangle(1, 0.5, b2Vec2(1, 1), world, props);
+    bullet = new b2GLRectangle(1, 0.5, b2Vec2(4, 4), world, props);
     b2Body *b = bullet->getBody();
     b->SetTransform(b2Vec2(1, 1), angle);
     b->ApplyLinearImpulse(b2Vec2(power * cos(angle), power * sin(angle)), b->GetWorldCenter(), true);
